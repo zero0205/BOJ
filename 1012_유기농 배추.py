@@ -1,8 +1,8 @@
 from collections import deque
 
 # 상하좌우
-dx = [0, 0, -1, 1]
-dy = [-1, 1, 0, 0]
+dx = [-1, 1, 0, 0]
+dy = [0, 0, -1, 1]
 
 def bfs(x, y, map_data):
     que = deque([(x, y)])
@@ -14,7 +14,7 @@ def bfs(x, y, map_data):
             ny = b + dy[i]
 
             # 범위를 벗어나는지?
-            if nx < 0 or nx >= m or ny < 0 or ny >= n:
+            if nx < 0 or nx >= n or ny < 0 or ny >= m:
                 continue
 
             # 배추가 심어져있는지?
@@ -35,11 +35,11 @@ for j in range(t):
         map_data[y][x] = 1
 
     cnt = 0
-
-    for col in range(m):
-        for row in range(n):
-            if map_data[row][col] == 1:
-                bfs(row, col, map_data)
-                cnt += 1
+        
+    for row in range(n):
+        for col in range(m):
+                if map_data[row][col] == 1:
+                    bfs(row, col, map_data)
+                    cnt += 1
 
     print(cnt)
